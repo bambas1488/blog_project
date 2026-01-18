@@ -3,14 +3,12 @@ from .models import Post
 from .forms import PostForm  # Импортируем форму для постов
 
 def home(request):
-    # Получаем все посты и передаем их в шаблон
-    posts = Post.objects.all().order_by('-created_at')  # Сортировка по дате
+    posts = Post.objects.all()  # Получаем все посты
     return render(request, 'blog/home.html', {'posts': posts})
 
 def post_detail(request, post_id):
-    # Получаем пост по ID
-    post = get_object_or_404(Post, pk=post_id)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    post = get_object_or_404(Post, pk=post_id)  # Получаем пост по ID
+    return render(request, 'blog/post_detail.html', {'post': post})  # Передаем объект в шаблон
 
 def add_post(request):
     # Функция для добавления нового поста
@@ -24,5 +22,14 @@ def add_post(request):
 
     return render(request, 'blog/add_post.html', {'form': form})
 
+
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.method == "POST":
+        post.delete()
+        return redirect('home')  
+
+    return redirect('post_detail', post_id=post.id)
 
 
