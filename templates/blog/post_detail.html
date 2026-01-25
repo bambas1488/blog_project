@@ -12,6 +12,7 @@
         <li>
             <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
             <p>{{ post.created_at }}</p>
+            <a href="{% url 'edit_post' post.id %}">✏️ Редактировать</a>
         </li>
         {% endfor %}
     </ul>

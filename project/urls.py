@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin  # Это нужно для работы админки
 from django.urls import path, include  # Здесь include для подключения URL-ов приложения
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),  # Админка по адресу /admin/
     path('', include('app.urls')),  # Подключение URL-ов для блога (главная страница и страницы постов)

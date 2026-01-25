@@ -1,0 +1,9 @@
+<h1>Редактировать пост</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Сохранить изменения</button>
+</form>
+
+<a href="{% url 'home' %}">← Назад</a>
